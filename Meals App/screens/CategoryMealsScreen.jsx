@@ -1,34 +1,12 @@
 import React from 'react'
-import { StyleSheet, View, FlatList } from 'react-native'
 import { MEALS } from '../mock/data'
-import MealItem from '../Components/MealItem'
+import MealsList from '../Components/MealsList'
 
 const CategoryMealsScreen = (props) => {
   const displayMeals = MEALS.filter((each) =>
     each.categoryIds.includes(props.navigation.getParam('category').id)
   )
-  return (
-    <View style={styles.screen}>
-      <FlatList
-        data={displayMeals}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <MealItem
-            meal={item}
-            onSelectMeal={() => {
-              props.navigation.navigate({
-                routeName: 'MealDetail',
-                params: {
-                  mealId: item.id
-                }
-              })
-            }}
-          />
-        )}
-        style={{ width: '100%' }}
-      />
-    </View>
-  )
+  return <MealsList data={displayMeals} navigation={props.navigation} />
 }
 
 // NOTE: navigationOptions can also be a function for automatically getting current navigationData as a parameter. Return an object for final render config.
@@ -40,11 +18,3 @@ CategoryMealsScreen.navigationOptions = (navigationData) => {
 }
 
 export default CategoryMealsScreen
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
