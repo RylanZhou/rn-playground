@@ -28,7 +28,7 @@ const FiltersScreen = (props) => {
   const [isVegan, setIsVegan] = useState(false)
   const [isVegetarian, setIsVegetarian] = useState(false)
 
-  // This function re-creates only when one of the four states changes
+  // This saveFilters function re-creates only when one of the four states changes
   const saveFilters = useCallback(() => {
     const appliedFilters = {
       isGlutenFree,

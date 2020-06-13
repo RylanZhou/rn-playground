@@ -15,7 +15,8 @@ const MealsList = (props) => {
               props.navigation.navigate({
                 routeName: 'MealDetail',
                 params: {
-                  mealId: item.id
+                  mealId: item.id,
+                  mealTitle: item.title
                 }
               })
             }}

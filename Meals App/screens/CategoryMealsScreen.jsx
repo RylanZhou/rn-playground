@@ -1,9 +1,12 @@
 import React from 'react'
-import { MEALS } from '../mock/data'
+import { useSelector } from 'react-redux'
 import MealsList from '../Components/MealsList'
 
 const CategoryMealsScreen = (props) => {
-  const displayMeals = MEALS.filter((each) =>
+  // Retrieve data from redux. "state.meals" is to get mealsReducer.
+  const mealsAvailable = useSelector((state) => state.meals.filteredMeals)
+
+  const displayMeals = mealsAvailable.filter((each) =>
     each.categoryIds.includes(props.navigation.getParam('category').id)
   )
   return <MealsList data={displayMeals} navigation={props.navigation} />

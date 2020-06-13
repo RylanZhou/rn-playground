@@ -35,6 +35,7 @@ module.exports = {
     'no-alert': 2, //禁止使用alert confirm prompt
     'no-lone-blocks': 0, //禁止不必要的嵌套块
     'no-class-assign': 2, //禁止给类赋值
+    'no-case-declarations': 0, // 禁止在Case语句块中声明变量
     'no-cond-assign': 2, //禁止在条件表达式中使用赋值语句
     'no-const-assign': 2, //禁止修改const声明的变量
     'no-delete-var': 2, //不能对var声明的变量使用delete操作符

@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
 import { enableScreens } from 'react-native-screens'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+
 import MealsNavigator from './navigator'
+import reducers from './Store/reducers'
 
 // For increasing performance
 enableScreens()
@@ -26,7 +30,11 @@ const MealsApp = () => {
     )
   }
 
-  return <MealsNavigator />
+  return (
+    <Provider store={createStore(reducers)}>
+      <MealsNavigator />
+    </Provider>
+  )
 }
 
 export default MealsApp
