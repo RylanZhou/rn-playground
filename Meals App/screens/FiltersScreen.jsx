@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { StyleSheet, Text, View, Switch, Platform } from 'react-native'
+import { useDispatch } from 'react-redux'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import MyHeaderButton from '../Components/HeaderButton'
-
 import { COLORS } from '../Constants'
+import { setFilters } from '../Store/actions'
 
 const FilterSwitch = (props) => {
   return (
@@ -28,6 +29,8 @@ const FiltersScreen = (props) => {
   const [isVegan, setIsVegan] = useState(false)
   const [isVegetarian, setIsVegetarian] = useState(false)
 
+  const dispatch = useDispatch()
+
   // This saveFilters function re-creates only when one of the four states changes
   const saveFilters = useCallback(() => {
     const appliedFilters = {
@@ -37,7 +40,8 @@ const FiltersScreen = (props) => {
       isVegetarian
     }
     console.log(appliedFilters)
-  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian])
+    dispatch(setFilters(appliedFilters))
+  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch])
 
   // Re-runs when saveFilters changes
   useEffect(() => {

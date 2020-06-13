@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { MEALS } from '../mock/data'
-import { TOGGLE_FAVORITE } from './actions'
+import { TOGGLE_FAVORITE, SET_FILTERS } from './actions'
 
 const initialState = {
   meals: MEALS,
@@ -29,6 +29,23 @@ const mealsReducer = (state = initialState, action) => {
             state.meals.find((each) => each.id === action.mealId)
           )
         }
+      }
+    case SET_FILTERS:
+      const { filters } = action
+      const updatedFilteredMeals = state.meals.filter((each) => {
+        if (
+          (filters.isGlutenFree && !each.isGlutenFree) ||
+          (filters.isVegan && !each.isVegan) ||
+          (filters.isVegetarian && !each.isVegetarian) ||
+          (filters.isLactoseFree && !each.isLactoseFree)
+        ) {
+          return false
+        }
+        return true
+      })
+      return {
+        ...state,
+        filteredMeals: updatedFilteredMeals
       }
     default:
       return state
