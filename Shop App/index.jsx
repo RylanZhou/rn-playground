@@ -1,15 +1,15 @@
 import React from 'react'
-import { View, Text } from 'react-native'
 import { Provider } from 'react-redux'
+import { StatusBar } from 'react-native'
 
 import store from './Store'
+import ShopNavigator from './Navigation/ShopNavigator'
 
 const ShopApp = () => {
   return (
     <Provider store={store}>
-      <View>
-        <Text>This is a Shop APP</Text>
-      </View>
+      <StatusBar barStyle="light-content" />
+      <ShopNavigator />
     </Provider>
   )
 }
