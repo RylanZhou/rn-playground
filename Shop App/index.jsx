@@ -1,14 +1,17 @@
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import React from 'react'
+import { View, Text } from 'react-native'
+import { Provider } from 'react-redux'
 
-export class ShopApp extends Component {
-  render() {
-    return (
+import store from './Store'
+
+const ShopApp = () => {
+  return (
+    <Provider store={store}>
       <View>
-        <Text> textInComponent </Text>
+        <Text>This is a Shop APP</Text>
       </View>
-    )
-  }
+    </Provider>
+  )
 }
 
 export default ShopApp
